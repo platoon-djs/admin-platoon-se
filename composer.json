@@ -22,9 +22,10 @@
                 "app/controllers"
             ],
             "Service\\": "app/services",
-            "Helper\\": "app/helpers",
+            "Facade\\": "app/facades",
             "Api\\": "app/api",
-            "Entities\\": "app/models/entities"
+            "Entities\\": "app/models/entities",
+            "Repositories\\": "app/models/repositories"
         }
     }
 }

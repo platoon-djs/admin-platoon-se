@@ -1,0 +1,49 @@
+Entities\User:
+  type: entity
+  table: users
+  repositoryClass: Repositories\UserRepository
+  indexes:
+    name_idx:
+      columns: [ username ]
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    username:
+      type: string
+      column: username
+      nullable: false
+      length: 32
+    passwordHash:
+      type: string
+      column: password
+      nullable: false
+      length: 255
+    name:
+      type: string
+      column: name
+      length: 32
+    surname:
+      type: string
+      column: surname
+      length: 32
+    role:
+      type: string
+      column: role
+      nullable: false
+      length: 32
+      options:
+        defalut: member
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: false
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: false
+  uniqueConstraints:
+    search_idx:
+      columns: [ username ]

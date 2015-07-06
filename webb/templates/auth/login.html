@@ -40,23 +40,25 @@
 					<p class="text-danger" ng-show="formErrors">Wrong username and/or password</p>
 					<form name="form" ng-submit="login(form, user)" novalidate>
 						<div class="form-group"
-							ng-class="{'has-error':(form.$submitted || form.user.$touched) && !form.user.$valid}">
+							ng-class="{'has-error':(form.$submitted || form.user.$touched) && !form.user.$valid, 'has-success': loggedIn}">
 							<input
 								type="text"
 								name="user"
 								placeholder="user"
 								ng-model="user.name"
 								required
+								ng-disabled="loggedIn"
 								class="form-control">
 						</div>
 						<div class="form-group"
-							ng-class="{'has-error':(form.$submitted || form.password.$touched) && !form.password.$valid}">
+							ng-class="{'has-error':(form.$submitted || form.password.$touched) && !form.password.$valid, 'has-success': loggedIn}">
 							<input
 								type="password"
 								name="password"
 								placeholder="password"
 								ng-model="user.password"
 								required
+								ng-disabled="loggedIn"
 								class="form-control">
 						</div>
 						<div class="checkbox">
@@ -67,7 +69,7 @@
 						</div>
 
 						<br>
-						<button type="submit" class="btn btn-primary" ng-disabled="pending"><i class="fa fa-spinner fa-spin" ng-show="pending"></i> Submit</button> <a style="margin-left:20px" href="#">Forgot password?</a>
+						<button type="submit" class="btn btn-primary" ng-disabled="pending || loggedIn"><i class="fa fa-spinner fa-spin" ng-show="pending"></i> Submit</button> <a style="margin-left:20px" href="#">Forgot password?</a>
 					</form>
 				</div>
 			</div>
@@ -86,14 +88,18 @@
 				$scope.login = function(form, user) {
 					if (form.$valid) {
 						this.pending = true;
+
 						$http.post('/auth/submit', user)
 							.success(function(resp) {
 								console.log(resp);
 								var data = resp.data;
-								if (!resp.valid) {
+								if (resp.valid) {
+									$scope.loggedIn = true;
+								} else {
 									user.password = '';
-									$scope.formErrors = true;
 								}
+
+								$scope.formErrors = !resp.valid;
 								$scope.pending = false;
 							})
 							.error(function(resp) {

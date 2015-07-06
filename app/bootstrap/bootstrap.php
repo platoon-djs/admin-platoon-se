@@ -34,9 +34,11 @@ require CONFIG_PATH.'doctrine.php';
 $setup = Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([
 		'Entities' => APP_PATH.'models/schemas'
 	], getenv('APP_DEBUG'));
-$em = Doctrine\ORM\EntityManager::create($config['doctrine'], $setup);
+$em = \Service\Registry::set('em', Doctrine\ORM\EntityManager::create($config['doctrine'], $setup));
 
-$app = new \Slim\Slim($config['slim']);
+
+
+$app = \Service\Registry::set('slim', new \Slim\Slim($config['slim']));
 
 require APP_PATH.'routes.php';
 return $app;
