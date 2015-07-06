@@ -1,0 +1,25 @@
+{
+    "name": "platoon-djs/admin-platoon-se",
+    "authors": [
+        {
+            "name": "Platoon DJs",
+            "email": "it@platoon.se"
+        },
+        {
+            "name": "Max Wihlborg",
+            "email": "max.wihlborg@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^2.6",
+        "vlucas/phpdotenv": "^2.0",
+        "doctrine/orm": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "": [
+                "app/controllers"
+            ]
+        }
+    }
+}

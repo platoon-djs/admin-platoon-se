@@ -1,0 +1,28 @@
+{
+  "name": "platoon-djs/admin-platoon-se",
+  "version": "0.0.0",
+  "homepage": "https://github.com/platoon-djs/admin-platoon-se",
+  "authors": [
+    "Max Wihlborg <max.wihlborg@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular-bootstrap": "~0.13.0"
+  },
+  "devDependencies": {
+    "font-awesome": "~4.3.0",
+    "angular-route": "~1.4.1",
+    "angular-resource": "~1.4.1"
+  }
+}

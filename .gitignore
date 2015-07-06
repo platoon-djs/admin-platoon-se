@@ -1,0 +1,12 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+
+/vendor
+/node_modules
+/public/bower
+/data
+
+.env
+.deploy
+/.idea
