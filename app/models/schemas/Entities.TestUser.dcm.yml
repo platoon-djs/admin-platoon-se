@@ -1,0 +1,19 @@
+Entities\TestUser:
+  type: entity
+  table: test_users
+  repositoryClass: Repositories\UserRepository
+  id:
+      id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      nullable: false
+      length: 32
+    passwordHash:
+      type: char
+      column: password
+      nullable: false
+      length: 64

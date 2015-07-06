@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Logga In - Platoon DJs</title>
+
+	<link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+	<script src="bower/angular/angular.min.js"></script>
+
+	<style>
+		body {
+			background: url(img/login.jpg) no-repeat center center fixed;
+			background-size: cover;
+		}
+		.panel-primary {
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+<body ng-app="login">
+
+	<div class="container" style="padding-top:30px">
+		<div class="hidden-xs">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary" ng-controller="LoginController">
+				<div class="panel-heading">
+					<h3 class="panel-title">Platoon DJs <small>interweb</small></h3>
+				</div>
+				<div class="panel-body">
+					<p class="text-danger" ng-show="formErrors">Wrong username and/or password</p>
+					<form name="form" ng-submit="login(form, user)" novalidate>
+						<div class="form-group"
+							ng-class="{'has-error':(form.$submitted || form.user.$touched) && !form.user.$valid}">
+							<input
+								type="text"
+								name="user"
+								placeholder="user"
+								ng-model="user.name"
+								required
+								class="form-control">
+						</div>
+						<div class="form-group"
+							ng-class="{'has-error':(form.$submitted || form.password.$touched) && !form.password.$valid}">
+							<input
+								type="password"
+								name="password"
+								placeholder="password"
+								ng-model="user.password"
+								required
+								class="form-control">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="user.remember">
+								Remeber me <small class="text-muted">(Not yet implemented)</small>
+							</label>
+						</div>
+
+						<br>
+						<button type="submit" class="btn btn-primary" ng-disabled="pending"><i class="fa fa-spinner fa-spin" ng-show="pending"></i> Submit</button> <a style="margin-left:20px" href="#">Forgot password?</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	(function(window, angular) {
+
+		angular.module('login', [])
+			.controller('LoginController', function($scope, $http) {
+				$scope.user = {
+					name: '',
+					password: '',
+					remember: true
+				};
+				$scope.login = function(form, user) {
+					if (form.$valid) {
+						this.pending = true;
+						$http.post('/auth/submit', user)
+							.success(function(resp) {
+								console.log(resp);
+								var data = resp.data;
+								if (!resp.valid) {
+									user.password = '';
+									$scope.formErrors = true;
+								}
+								$scope.pending = false;
+							})
+							.error(function(resp) {
+								$scope.pending = false;
+							});
+					} else {
+
+					}
+				}
+			});
+
+
+
+	})(window, window.angular);
+	</script>
+</body>
+</html>

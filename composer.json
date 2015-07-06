@@ -13,13 +13,18 @@
     "require": {
         "slim/slim": "^2.6",
         "vlucas/phpdotenv": "^2.0",
-        "doctrine/orm": "^2.5"
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "^2.7"
     },
     "autoload": {
         "psr-4": {
             "": [
                 "app/controllers"
-            ]
+            ],
+            "Service\\": "app/services",
+            "Helper\\": "app/helpers",
+            "Api\\": "app/api",
+            "Entities\\": "app/models/entities"
         }
     }
 }
