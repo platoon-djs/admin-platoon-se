@@ -10,5 +10,4 @@ namespace Repositories;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-	
 }

@@ -32,7 +32,7 @@ require CONFIG_PATH.'doctrine.php';
 
 
 $setup = Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([
-		'Entities' => APP_PATH.'/models/schemas'
+		'Entities' => APP_PATH.'models/schemas'
 	], getenv('APP_DEBUG'));
 $em = Doctrine\ORM\EntityManager::create($config['doctrine'], $setup);
 

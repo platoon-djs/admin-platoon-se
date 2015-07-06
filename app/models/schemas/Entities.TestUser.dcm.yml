@@ -2,8 +2,11 @@ Entities\TestUser:
   type: entity
   table: test_users
   repositoryClass: Repositories\UserRepository
+  indexes:
+    name_index:
+      columns: [ name ]
   id:
-      id:
+    id:
       type: integer
       generator:
         strategy: AUTO
@@ -13,7 +16,12 @@ Entities\TestUser:
       nullable: false
       length: 32
     passwordHash:
-      type: char
+      type: string
       column: password
       nullable: false
       length: 64
+      options:
+        fixed: true
+  uniqueConstraints:
+    search_idx:
+      columns: [ name ]

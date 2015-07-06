@@ -8,19 +8,9 @@ namespace Entities;
 class TestUser
 {
     /**
-     * @var string
+     * @var integer
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $generator;
 
     /**
      * @var string
@@ -28,81 +18,19 @@ class TestUser
     private $name;
 
     /**
-     * @var char
+     * @var string
      */
     private $passwordHash;
 
 
     /**
-     * Set id
-     *
-     * @param string $id
-     *
-     * @return TestUser
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * Get id
      *
-     * @return string
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return TestUser
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set generator
-     *
-     * @param string $generator
-     *
-     * @return TestUser
-     */
-    public function setGenerator($generator)
-    {
-        $this->generator = $generator;
-
-        return $this;
-    }
-
-    /**
-     * Get generator
-     *
-     * @return string
-     */
-    public function getGenerator()
-    {
-        return $this->generator;
     }
 
     /**
@@ -132,11 +60,11 @@ class TestUser
     /**
      * Set passwordHash
      *
-     * @param \char $passwordHash
+     * @param string $passwordHash
      *
      * @return TestUser
      */
-    public function setPasswordHash(\char $passwordHash)
+    public function setPasswordHash($passwordHash)
     {
         $this->passwordHash = $passwordHash;
 
@@ -146,10 +74,11 @@ class TestUser
     /**
      * Get passwordHash
      *
-     * @return \char
+     * @return string
      */
     public function getPasswordHash()
     {
         return $this->passwordHash;
     }
 }
+
