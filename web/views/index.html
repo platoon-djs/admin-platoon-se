@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="/">
+	<meta charset="UTF-8">
+
+	<title>Testar</title>
+
+	<link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="bower/fullcalendar/dist/fullcalendar.css"/>
+	<link rel="stylesheet" href="css/common.min.css">
+
+	<script src="bower/jquery/dist/jquery.min.js"></script>
+	<script src="bower/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower/angular/angular.min.js"></script>
+	<script src="bower/angular-route/angular-route.min.js"></script>
+	<script src="bower/angular-resource/angular-resource.min.js"></script>
+	<script src="bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+	<script type="text/javascript" src="bower/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="bower/angular-ui-calendar/src/calendar.js"></script>
+	<script type="text/javascript" src="bower/fullcalendar/dist/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="bower/fullcalendar/dist/gcal.js"></script>
+
+	<script src="js/platoon-tpls.min.js"></script>
+	<script src="js/platoon.min.js"></script>
+</head>
+<body ng-app="platoon" ng-controller="AdminController" ng-class="{'sidebar': sidebar}">
+
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid no-padding">
+			<a class="navbar-brand" href="#" ng-click="sidebar = !sidebar"><i class="fa fa-bars"></i></a>
+			<ul class="nav navbar-nav">
+				<li ng-class="activeUrl('/dashboard')"><a href="/">Home</a></li>
+				<li class="disabled"><a href="#">Music</a></li>
+				<li ng-class="activeUrl('/cms')"><a href="/cms">CMS</a></li>
+				<li ng-class="activeUrl('/event')"><a href="/event">Event</a></li>
+				<li ng-class="activeUrl('/config')"><a href="/config">Config</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><i class="fa fa-bell"></i></a></li>
+				<li><a href="#"><i class="fa fa-sign-out"></i></a></li>
+				<li><a href="#"><i class="fa fa-cog"></i></a></li>
+				<li>
+					<p class="navbar-text">Logged in as Max</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="sidebar sidebar-main">
+		<div class="sidebar-body">
+			
+		</div>
+	</div>
+
+	<ng-view></ng-view>
+</body>
+</html>

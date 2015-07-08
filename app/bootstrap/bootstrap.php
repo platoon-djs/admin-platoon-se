@@ -7,7 +7,7 @@ define('ROOT_PATH', __DIR__ . '/../../');
 define('VENDOR_PATH', __DIR__ . '/../../vendor/');
 define('APP_PATH', __DIR__ . '/../../app/');
 define('CONFIG_PATH', __DIR__ . '/../../app/config/');
-define('TEMPLATE_PATH', __DIR__ . '/../../webb/templates/');
+define('TEMPLATE_PATH', __DIR__ . '/../../web/views/');
 define('PUBLIC_PATH', __DIR__ . '/../../public/');
 
 // Password hasing
@@ -42,7 +42,7 @@ require CONFIG_PATH . 'slim.php';
 require CONFIG_PATH . 'doctrine.php';
 
 $setup = Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([
-	'Entities' => APP_PATH . 'models/schemas',
+	APP_PATH . 'models/schemas',
 ], getenv('APP_DEBUG'));
 $em = \Service\Registry::set('em', Doctrine\ORM\EntityManager::create($config['doctrine'], $setup));
 

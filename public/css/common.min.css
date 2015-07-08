@@ -1,0 +1,2 @@
+canvas{width:200px}.sidebar-main{position:fixed;background-color:#3c3c3c;box-shadow:-3px 0 0 rgba(0,0,0,.2)inset;top:0;bottom:0;padding:10px;left:-220px;width:220px}.sidebar-main .sidebar-body{width:100%;height:100%;overflow:scroll}.sidebar-main,body{transition:left .2s ease-in-out,padding .2s ease-in-out}body.sidebar{padding-left:220px}body.sidebar .sidebar-main{left:0}
+/*# sourceMappingURL=common.css.map */

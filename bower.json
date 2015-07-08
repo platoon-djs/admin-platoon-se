@@ -18,7 +18,8 @@
     "angular": "~1.4.1",
     "bootstrap": "~3.3.5",
     "jquery": "~2.1.4",
-    "angular-bootstrap": "~0.13.0"
+    "angular-bootstrap": "~0.13.0",
+    "angular-ui-calendar": "~1.0.1"
   },
   "devDependencies": {
     "font-awesome": "~4.3.0",

@@ -1,5 +1,6 @@
 <?php
 
-
-$app->get('/', 'IndexController:index');
 $app->post('/auth/submit', 'AuthController:submit');
+
+// Angular forwarding
+$app->get('/(:controller(/:action+))', 'IndexController:index');
