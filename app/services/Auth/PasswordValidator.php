@@ -1,6 +1,6 @@
 <?php
 
-namespace Service;
+namespace Service\Auth;
 
 /*
  * Password Hashing With PBKDF2 (http://crackstation.net/hashing-security.htm).
@@ -29,22 +29,9 @@ namespace Service;
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+class PasswordValidator {
 
-// These constants may be changed without breaking existing hashes.
-define("PBKDF2_HASH_ALGORITHM", "sha256");
-define("PBKDF2_ITERATIONS", 1000);
-define("PBKDF2_SALT_BYTE_SIZE", 24);
-define("PBKDF2_HASH_BYTE_SIZE", 24);
-
-define("HASH_SECTIONS", 4);
-define("HASH_ALGORITHM_INDEX", 0);
-define("HASH_ITERATION_INDEX", 1);
-define("HASH_SALT_INDEX", 2);
-define("HASH_PBKDF2_INDEX", 3);
-
-class Auth {
-
-	public static function createHash($password) {
+	public static function passwordHash($password) {
 		// format: algorithm:iterations:salt:hash
 		$salt = base64_encode(openssl_random_pseudo_bytes(PBKDF2_SALT_BYTE_SIZE));
 		return PBKDF2_HASH_ALGORITHM . ":" . PBKDF2_ITERATIONS . ":" . $salt . ":" .
@@ -58,7 +45,7 @@ class Auth {
 		));
 	}
 
-	public static function validatePassword($password, $correct_hash) {
+	public static function validate($password, $correct_hash) {
 		$params = explode(":", $correct_hash);
 		if (count($params) < HASH_SECTIONS) {
 			return false;
