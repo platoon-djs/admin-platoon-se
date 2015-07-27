@@ -28,8 +28,7 @@ $sidebar-width: 220px;
 }
 
 body.sidebar {
-	padding-left: 220px;
-
+	padding-left: $sidebar-width;
 
 	.sidebar-main {
 		left: 0;

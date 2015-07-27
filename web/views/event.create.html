@@ -1,0 +1,157 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{ add.action ? add.action : 'Create' }} Event</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Location</label>
+								<input type="text" class="form-control" placeholder="Location">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Type</label>
+								<select class="form-control" ng-model="add.type" ng-options="event.type as event.label for event in eventTypes"></select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Layout</label>
+								<select class="form-control" ng-model="add.layout">
+									<option value="standard" selected>Standard</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Contact name</label>
+								<input type="text" class="form-control" placeholder="Contact name">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Tel. no.</label>
+								<input type="phone" class="form-control" placeholder="070-333 33 33" ng-model="add.phone">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Email</label>
+								<input type="email" class="form-control" placeholder="name@email.com">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Time</label>
+										<div class="row date-pair">
+											<div class="form-group col-md-7">
+												<div class="input-group date">
+													<input type="text" class="form-control start" placeholder="DD/MM/YYYY">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+											<div class="form-group col-md-5">
+												<div class="input-group">
+													<input type="text" class="form-control time start" placeholder="HH:MM">
+													<span style="cursor:pointer" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+												</div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="form-group col-md-7">
+												<div class="input-group date">
+													<input type="text" class="form-control end" placeholder="DD/MM/YYYY">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+											<div class="form-group col-md-5">
+												<div class="input-group">
+													<input type="text" class="form-control time end" placeholder="HH:MM">
+													<span style="cursor:pointer" class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>DJs</label>
+										<input type="text" class="form-control" placeholder="Name" ng-model="add.djs.current" typeahead-js typeahead-engine="add.djs.engine" typeahead-on-select="add.djs.add($value)">
+										<select ng-keydown="add.djs.remove($event)" class="form-control" size="5" style="margin-top:15px;">
+											<option ng-value="dj" ng-repeat="dj in add.djs.djs">{{dj}}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Equipment <small class="text-muted">Available</small></label>
+									<button class="pull-right btn btn-xs btn-default"><i class="fa fa-arrow-right"></i></button>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-xs btn-default"><i class="fa fa-arrow-left"></i></button>
+									<label>Equipment <small class="text-muted">Booked</small></label>
+								</div>
+								<div class="clearfix"></div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<select class="form-control" size="9">
+											<option ng-value="e" ng-repeat="e in ['2000case', 'PA aktivt', 'PA passivt', 'litet ljus']">{{e}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<select class="form-control" size="9"></select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Notes</label>
+										<textarea rows="3" class="form-control"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+							
+					<button class="btn btn-primary">{{ action ? action : 'Create'}} Booking</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// initialize input widgets first
+		$('.row.date-pair .time').timepicker({
+	        showDuration: true,
+	        timeFormat: 'H:i'
+		});
+
+		$('.row.date-pair .date').datepicker({
+			todayBtn: true,
+			todayHighlight: true,
+			weekStart: 1,
+			format: "dd/mm/yyyy",
+			language: "sv"
+		});
+
+		// initialize datepair
+    	$('.row.datepair').datepair();
+	</script>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+			<h3>Events</h3>
+			<br>
+			<a ui-sref="event.create" class="btn btn-success btn-block"><i class="fa fa-plus-circle"></i> Create new event</a>
+			<hr>
+			<ul class="nav nav-pills nav-stacked">
+				<li ng-class="activeUrl('/event')"><a ui-sref="event.calendar">Calender</a></li>
+				<li ng-class="activeUrl('/event/list')"><a ui-sref="event.list">Upcomming</a></li>
+				<li ng-class="activeUrl('/event/ledger')"><a ui-sref="event.ledger">Ledger</a></li>
+				<li class="divider"><hr></li>
+				<li ng-class="activeUrl('/event/history')"><a ui-sref="event.history">History</a></li>
+			</ul>
+		</div>
+		<div class="col-md-10">
+			<div ui-view></div>
+		</div>
+	</div>
+</div>

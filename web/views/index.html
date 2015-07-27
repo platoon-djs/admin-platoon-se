@@ -6,37 +6,24 @@
 
 	<title>Testar</title>
 
-	<link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="bower/fullcalendar/dist/fullcalendar.css"/>
-	<link rel="stylesheet" href="css/common.min.css">
+	<link rel="stylesheet" href="/css/bowerblob.css">
+	<link rel="stylesheet" href="/css/common.min.css">
 
-	<script src="bower/jquery/dist/jquery.min.js"></script>
-	<script src="bower/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="bower/angular/angular.min.js"></script>
-	<script src="bower/angular-route/angular-route.min.js"></script>
-	<script src="bower/angular-resource/angular-resource.min.js"></script>
-	<script src="bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-
-	<script type="text/javascript" src="bower/moment/min/moment.min.js"></script>
-	<script type="text/javascript" src="bower/angular-ui-calendar/src/calendar.js"></script>
-	<script type="text/javascript" src="bower/fullcalendar/dist/fullcalendar.min.js"></script>
-	<script type="text/javascript" src="bower/fullcalendar/dist/gcal.js"></script>
-
-	<script src="js/platoon-tpls.min.js"></script>
-	<script src="js/platoon.min.js"></script>
+	<script src="/js/bowerblob.js"></script>
+	<script src="/js/platoon-tpls.min.js"></script>
+	<script src="/js/platoon.min.js"></script>
 </head>
-<body ng-app="platoon" ng-controller="AdminController" ng-class="{'sidebar': sidebar}">
+<body ng-app="platoon" ng-controller="AdminController" ng-class="{'sidebar':sidebar}">
 
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid no-padding">
-			<a class="navbar-brand" href="#" ng-click="sidebar = !sidebar"><i class="fa fa-bars"></i></a>
+			<a class="navbar-brand" href="" ng-click="sidebar = !sidebar"><i class="fa fa-bars"></i></a>
 			<ul class="nav navbar-nav">
-				<li ng-class="activeUrl('/dashboard')"><a href="/">Home</a></li>
-				<li class="disabled"><a href="#">Music</a></li>
-				<li ng-class="activeUrl('/cms')"><a href="/cms">CMS</a></li>
-				<li ng-class="activeUrl('/event')"><a href="/event">Event</a></li>
-				<li ng-class="activeUrl('/config')"><a href="/config">Config</a></li>
+				<li ng-class="activeState('dashboard')"><a ui-sref="dashboard">Home</a></li>
+				<li ng-class="activeState('music')" class="disabled"><a ui-sref="music">Music</a></li>
+				<li ng-class="activeState('cms')"><a ui-sref="cms">CMS</a></li>
+				<li ng-class="activeState('event')"><a ui-sref="event.calendar">Event</a></li>
+				<li ng-class="activeState('config')"><a ui-sref="config">Config</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><i class="fa fa-bell"></i></a></li>
@@ -55,6 +42,6 @@
 		</div>
 	</div>
 
-	<ng-view></ng-view>
+	<div ui-view></div>
 </body>
 </html>

@@ -4,8 +4,12 @@
 
 /vendor
 /node_modules
-/public/bower
+/bower
 /data
+
+/public/css/bowerblob.css
+/public/js/bowerblob.js
+/public/fonts
 
 .env
 .deploy

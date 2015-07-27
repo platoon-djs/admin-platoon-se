@@ -1,6 +1,7 @@
 var gulp          = require('gulp'),
 	templateCache = require('gulp-angular-templatecache'),
 	concat        = require('gulp-concat'),
+	concatCss     = require('gulp-concat-css'),
 	connect       = require('gulp-connect-php'),
 	csso          = require('gulp-csso'),
 	filter        = require('gulp-filter'),
@@ -34,13 +35,58 @@ var wrapper = [
 gulp.task('connect', function() {
 	return connect.server({
 		port: 8080,
+		open: true,
 		base: 'public'
 	});
 });
 
+gulp.task('blob', function() {
+	var bowerfiles_js = [
+			'bower/jquery/dist/jquery.min.js',
+			'bower/bootstrap/dist/js/bootstrap.min.js',
+			'bower/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+			'bower/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sv.min.js',
+			'bower/angular/angular.min.js',
+			'bower/angular-ui-router/release/angular-ui-router.min.js',
+			'bower/angular-ui-calendar/src/calendar.js',
+			'bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
+			'bower/angular-resource/angular-resource.min.js',
+			'bower/typeahead.js/dist/typeahead.bundle.min.js',
+			'bower/moment/min/moment.min.js',
+			'bower/datepair.js/dist/jquery.datepair.js',
+			'bower/jquery-timepicker-jt/jquery.timepicker.min.js',
+			'bower/fullcalendar/dist/fullcalendar.min.js',
+			'bower/fullcalendar/dist/gcal.js'
+		],
+		bowerfiles_css = [
+			'bower/bootstrap/dist/css/bootstrap.min.css',
+			'bower/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
+			'bower/jquery-timepicker-jt/jquery.timepicker.css',
+			'bower/font-awesome/css/font-awesome.min.css',
+			'bower/fullcalendar/dist/fullcalendar.css'
+		],
+		bowerfiles_fonts = [
+			'bower/font-awesome/fonts/**'
+		];
+
+	gulp.src(bowerfiles_fonts)
+		.pipe(gulp.dest('public/fonts'));
+
+	gulp.src(bowerfiles_css)
+		.pipe(concat('bowerblob.css'))
+		.pipe(csso())
+		.pipe(gulp.dest('public/css'));
+
+	return gulp.src(bowerfiles_js)
+		.pipe(uglify())
+		.pipe(concat('bowerblob.js'))
+		.pipe(gulp.dest('public/js'));
+});
+
 gulp.task('app', function() {
 	return gulp.src([
-			'*/**',
+			'*/*/**',
+			'*/*',
 			'*.js'
 		], {cwd: 'web/app'})
 		.pipe(plumber())
@@ -97,7 +143,6 @@ gulp.task('template', function() {
 		wd = {cwd: 'web/views'}
 		dest = 'public/js',
 		settings = {
-			root: 'tpl',
 			standalone: true,
 			filename: 'platoon-tpls.js',
 			module: 'platoon.tpls'
